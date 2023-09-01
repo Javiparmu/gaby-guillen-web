@@ -1,0 +1,12 @@
+---
+import PaintingSection from './PaintingSection.astro';
+import { createSupabaseClient } from '../utils/helpers';
+
+const supabase = createSupabaseClient()
+
+const { data: gallery } = await supabase.from('paintings').select('*');
+---
+
+{gallery?.map((painting, index) => (
+    <PaintingSection painting={painting} index={index} />
+))}

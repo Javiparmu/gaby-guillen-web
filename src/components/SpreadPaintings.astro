@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import firstBgImage from '../assets/images/bg-image-1.webp';
+import secondBgImage from '../assets/images/bg-image-2.jpg';
+import thirdBgImage from '../assets/images/bg-image-3.webp';
+---
+
+<div class="w-screen h-screen fixed grid md:grid-cols-3 place-items-center -z-10">
+    <Image
+        src={firstBgImage}
+        alt="painting 1"
+        class="hidden md:block w-[350px] opacity-25 shadow-white shadow-md"
+        format="webp"
+        fetchpriority="high"
+    />
+    <Image
+        src={secondBgImage}
+        alt="painting 2"
+        class="w-[350px] opacity-25 md:shadow-white md:shadow-md"
+        format="webp"
+        fetchpriority="high"
+    />
+    <Image
+        src={thirdBgImage}
+        alt="painting 3"
+        class="hidden md:block w-[350px] opacity-25 shadow-white shadow-md"
+        format="webp"
+        fetchpriority="high"
+    />
+</div>
+

@@ -1,0 +1,90 @@
+---
+import type { Painting } from '../types';
+import { Image } from 'astro:assets';
+import { getSectionIdFromTitle } from '../utils/helpers';
+
+export const prerender = false;
+
+interface Props {
+    painting: Painting;
+    index: number;
+}
+
+const {painting, index} = Astro.props;
+
+const { value: session } = Astro.cookies.get("session") ?? {};
+
+const { username, password } = JSON.parse(session ?? "{}");
+
+let isAuthorized = false;
+
+if (username === 'admin' || password === 'admin12345') {
+    isAuthorized = true;
+}
+---
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const qrButtons = document.querySelectorAll('#qr-button');
+
+        qrButtons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                const parentSection = button.parentNode;
+
+                const qrContainer = parentSection?.querySelector('#qr-container');
+                const qrCode = parentSection?.querySelector('#qr-code');
+
+                qrContainer?.classList.toggle('hidden');
+                qrCode?.classList.toggle('hidden');
+
+                qrContainer?.addEventListener('click', function() {
+                    qrContainer.classList.add('hidden');
+                    qrCode?.classList.add('hidden');
+                });
+            });
+        });
+    });
+</script>
+
+{index % 2 === 0 ?
+    (<section id={getSectionIdFromTitle(painting.title)} class='content-section bg-[#ebecf0] px-[15vw] py-5 md:py-0'>
+        <div class="flex flex-col items-center py-8 gap-y-[3vh] md:grid md:grid-cols-2 place-items-center sm:py-16">
+            <img class="max-h-[30vh] md:max-h-[80vh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
+            <div class="flex flex-col items-center md:items-start gap-y-[3vh] md:gap-y-4">
+                <h2 class="text-2xl md:text-4xl tracking-tight font-extrabold text-gray-900">{painting.title}</h2>
+                <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">{painting.description}</p>
+                <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
+                <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
+                {isAuthorized &&
+                    <button id="qr-button" class="inline-flex items-center text-white bg-primary-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+                        Mostrar QR
+                    </button>
+                }
+                <div id="qr-container" class="hidden fixed top-0 left-0 z-40 w-screen h-screen bg-black opacity-60" id="qr-code-container" />
+                {painting.qr != null && painting.qr !== '' &&
+                    <Image width={250} height={250} id="qr-code" src={painting.qr} alt="qr" class="hidden fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-50 rounded-md"/>
+                }
+            </div>
+        </div>
+    </section>)
+    : 
+   ( <section id={getSectionIdFromTitle(painting.title)} class='content-section bg-[#13151A] px-[15vw] py-5 md:py-0'>
+        <div class="flex flex-col-reverse items-center justify-center gap-y-[3vh] py-8 md:grid md:grid-cols-2 place-items-center sm:py-16 sm:px-20">
+            <div class="flex flex-col items-center md:items-start gap-y-[3vh] md:gap-y-4">
+                <h2 class="text-2xl md:text-4xl tracking-tight font-extrabold text-white">{painting.title}</h2>
+                <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">{painting.description}</p>
+                <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
+                <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
+                {isAuthorized &&
+                    <button id="qr-button" class="inline-flex items-center text-white bg-primary-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+                        Mostrar QR
+                    </button>
+                }
+                <div id="qr-container" class="hidden fixed top-0 left-0 z-40 w-screen h-screen bg-black opacity-60" id="qr-code-container" />
+                {painting.qr != null && painting.qr !== '' &&
+                    <Image width={250} height={250} id="qr-code" src={painting.qr} alt="qr" class="hidden fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-50 rounded-md"/>
+                }
+            </div>
+            <img class="max-h-[30vh] md:max-h-[80vh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
+        </div>
+    </section>)
+}

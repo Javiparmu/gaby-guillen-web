@@ -1,0 +1,50 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import AdminDashboard from "../../components/admin/AdminDashboard";
+import { createSupabaseClient } from "../../utils/helpers";
+
+const supabase = createSupabaseClient();
+
+const { data: paintingsData } = await supabase.from('paintings').select('*');
+---
+
+<script>
+    import type { Painting } from "../../types";
+    import { createSupabaseClient } from "../../utils/helpers";
+
+    const supabase = createSupabaseClient();
+
+    const updatePainting = async (painting: Painting) => {
+        await supabase.from('paintings').update(painting).eq('id', painting.id);
+    }
+
+    const createPainting = async (painting: Painting) => {
+        await supabase.from('paintings').insert(painting);
+    }
+
+    const deletePainting = async (id: string) => {
+        await supabase.from('paintings').delete().eq('id', Number(id));
+    }
+
+    window.addEventListener('updatePainting', async (event) => {
+        await updatePainting((event as CustomEvent)?.detail);
+
+        window.location.reload();
+    });
+
+    window.addEventListener('createPainting', async (event) => {
+        await createPainting((event as CustomEvent)?.detail);
+
+        window.location.reload();
+    });
+
+    window.addEventListener('deletePainting', async (event) => {
+        await deletePainting((event as CustomEvent)?.detail);
+
+        window.location.reload();
+    });
+</script>
+
+<AdminLayout title="Gaby Guillén - Panel de control">
+    <AdminDashboard paintings={paintingsData ?? []} client:only />
+</AdminLayout>
