@@ -9,7 +9,7 @@ const paintingsData = await SupabaseService.select<Painting[]>('paintings');
 
 <script type="module">
     import { SupabaseService } from "../../libs/SupabaseService";
-    import type { Painting } from "../../types";
+    import { Painting } from "../../types";
 
     window.addEventListener('updatePainting', async (event) => {
         const painting = (event as CustomEvent)?.detail as Painting;
