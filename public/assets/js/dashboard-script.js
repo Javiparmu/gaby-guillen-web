@@ -1,4 +1,4 @@
-import { SupabaseService } from "../../libs/SupabaseService";
+import { SupabaseService } from "../../../src/libs/SupabaseService";
 
 window.addEventListener('updatePainting', async (event) => {
     const painting = event?.detail;

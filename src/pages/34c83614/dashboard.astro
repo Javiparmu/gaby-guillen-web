@@ -7,8 +7,8 @@ import type { Painting } from "../../types";
 const paintingsData = await SupabaseService.select<Painting[]>('paintings');
 ---
 
-<script src="../../assets/js/dashboard-script.js" />
+<script src="/assets/js/dashboard-script.js" />
     
 <AdminLayout title="Gaby Guillén - Panel de control">
-    <AdminDashboard paintings={paintingsData ?? []} client:idle />
+    <AdminDashboard paintings={paintingsData ?? []} client:only="react" />
 </AdminLayout>
