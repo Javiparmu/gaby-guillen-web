@@ -9,24 +9,23 @@ const paintingsData = await SupabaseService.select<Painting[]>('paintings');
 
 <script type="module">
     import { SupabaseService } from "../../libs/SupabaseService";
-    import { Painting } from "../../types";
 
     window.addEventListener('updatePainting', async (event) => {
-        const painting = (event as CustomEvent)?.detail as Painting;
+        const painting = event?.detail;
 
-        await SupabaseService.update((event as CustomEvent)?.detail, 'paintings', Number(painting.id));
+        await SupabaseService.update(event?.detail, 'paintings', Number(painting.id));
 
         window.location.reload();
     });
 
     window.addEventListener('createPainting', async (event) => {
-        await SupabaseService.insert((event as CustomEvent)?.detail, 'paintings');
+        await SupabaseService.insert(event?.detail, 'paintings');
 
         window.location.reload();
     });
 
     window.addEventListener('deletePainting', async (event) => {
-        await SupabaseService.delete((event as CustomEvent)?.detail, 'paintings');
+        await SupabaseService.delete(event?.detail, 'paintings');
 
         window.location.reload();
     });
