@@ -2,8 +2,9 @@ import { useRef, type FC, useState, type ChangeEvent, type FormEvent } from "rea
 import type { Painting } from "../../types";
 import { baseFileUrl, defaultParams, s3Client } from "../../libs/s3Client";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import {isEqual} from 'lodash';
 import { base64ToFile, getQRCode, getSectionIdFromTitle, getUrlFromTitle } from "../../utils/helpers";
+import lodash from 'lodash';
+const { isEqual } = lodash;
 
 interface PaintingFormProps {
     painting: Partial<Painting>;
