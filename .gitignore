@@ -4,6 +4,9 @@ dist/
 # vercel output
 .vercel/
 
+# netlify output
+.netlify/
+
 # generated types
 .astro/
 
