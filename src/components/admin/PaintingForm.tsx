@@ -127,7 +127,7 @@ export const PaintingForm: FC<PaintingFormProps> = ({painting, action, close}) =
     };
 
     return (
-        <form onSubmit={action === 'create' ? (e) => handleCreate(e) : (e) => handleUpdate(e)} className="space-y-4" action="#">
+        <form method='POST' onSubmit={action === 'create' ? (e) => handleCreate(e) : (e) => handleUpdate(e)} className="space-y-4" action="#">
             <div className="col-span-full">
                 <label className="block text-sm font-medium leading-6 text-gray-900">Imagen del cuadro</label>
                 <div className="mt-2 flex items-center gap-x-3">
