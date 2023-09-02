@@ -7,7 +7,7 @@ import type { Painting } from "../../types";
 const paintingsData = await SupabaseService.select<Painting[]>('paintings');
 ---
 
-<script>
+<script type="module">
     import { SupabaseService } from "../../libs/SupabaseService";
     import type { Painting } from "../../types";
 

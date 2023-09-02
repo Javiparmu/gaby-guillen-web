@@ -8,5 +8,8 @@ import react from "@astrojs/react";
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: "hybrid",
-  adapter: vercel()
+  adapter: vercel({
+    analytics: true,
+    functionPerRoute: false,
+  })
 });
