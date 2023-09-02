@@ -1,6 +1,6 @@
 import { type FC, type FormEvent, useState } from 'react';
 import {toast, Toaster} from 'sonner';
-import { toastDuration } from '../../utils/constants';
+import { adminPassword, adminUsername, toastDuration } from '../../utils/constants';
 import { setCookie } from '../../utils/helpers';
 
 const LoginForm: FC = () => {
@@ -10,7 +10,7 @@ const LoginForm: FC = () => {
     const handleLogin = (e: FormEvent) => {
         e.preventDefault();
 
-        if (username === "admin" && password === "admin12345") {
+        if (username === adminUsername && password === adminPassword) {
             setCookie("session", JSON.stringify({
                 username,
                 password

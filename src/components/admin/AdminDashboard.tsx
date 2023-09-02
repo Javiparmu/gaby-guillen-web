@@ -71,7 +71,7 @@ const AdminDashboard = ({paintings}: AdminDashboardProps) => {
 
     return (
         <main className="flex flex-col items-center overflow-x-auto md:overflow-visible">
-            <h1 className="text-4xl text-center font-bold text-gray-800 dark:text-white mt-20">Lista de cuadros</h1>
+            <h1 className="text-4xl text-center font-bold text-gray-800 dark:text-white mt-10">Lista de cuadros</h1>
             <div className="flex flex-col items-end justify-end mt-10">
                 <button onClick={() => onCreate()} id="submit-button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Nuevo cuadro</button>
                 <div className="relative shadow-md sm:rounded-lg mt-5 min-w-[60vw] overflow-x-auto md:overflow-x-visible">

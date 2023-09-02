@@ -1,0 +1,44 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import AdminDashboard from "../../components/admin/AdminDashboard";
+import { SupabaseService } from "../../libs/SupabaseService";
+import type { Painting } from "../../types";
+
+const paintingsData = await SupabaseService.select<Painting[]>('paintings');
+---
+
+<script>
+    import { SupabaseService } from "../../libs/SupabaseService";
+    import type { Painting } from "../../types";
+    import { getCookie, isValidSession } from "../../utils/helpers";
+
+    const sessionCookie = getCookie("session");
+
+    if (!isValidSession(sessionCookie)) {
+        location.href = "/34c83614";
+    }
+
+    window.addEventListener('updatePainting', async (event) => {
+        const painting = (event as CustomEvent)?.detail as Painting;
+
+        await SupabaseService.update((event as CustomEvent)?.detail, 'paintings', Number(painting.id));
+
+        window.location.reload();
+    });
+
+    window.addEventListener('createPainting', async (event) => {
+        await SupabaseService.insert((event as CustomEvent)?.detail, 'paintings');
+
+        window.location.reload();
+    });
+
+    window.addEventListener('deletePainting', async (event) => {
+        await SupabaseService.delete((event as CustomEvent)?.detail, 'paintings');
+
+        window.location.reload();
+    });
+</script>
+
+<AdminLayout title="Gaby Guillén - Panel de control">
+    <AdminDashboard paintings={paintingsData ?? []} client:only />
+</AdminLayout>

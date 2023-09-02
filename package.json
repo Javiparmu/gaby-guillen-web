@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^2.3.2",
-    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/tailwind": "^5.0.0",
     "@aws-sdk/client-s3": "^3.400.0",
     "@supabase/supabase-js": "^2.33.1",
     "@types/react": "^18.2.21",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.197",
     "@types/node": "^20.5.7",
+    "@types/qrcode": "^1.5.2",
     "@typescript-eslint/parser": "^6.5.0",
     "eslint": "^8.48.0",
     "eslint-plugin-astro": "^0.29.0"

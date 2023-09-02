@@ -5,3 +5,7 @@ export const paintings = [
 ]
 
 export const toastDuration = 3000;
+
+export const adminUsername = import.meta.env.PUBLIC_ADMIN_USERNAME;
+
+export const adminPassword = import.meta.env.PUBLIC_ADMIN_PASSWORD;

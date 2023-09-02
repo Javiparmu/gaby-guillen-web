@@ -1,6 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
-import type { Database } from "../types";
-import { toDataURL, QRCodeToDataURLOptions } from "qrcode";
+import { toDataURL, type QRCodeToDataURLOptions } from "qrcode";
+import { adminPassword, adminUsername } from "./constants";
 
 export const setCookie = (name: string, value: string, days: number) => {
     let expires = "";
@@ -32,12 +31,11 @@ export const getCookie = (name: string) => {
     return null;
 };
 
-export const createSupabaseClient = () => {
-    const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-    const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+export const isValidSession = (session: string | null) => {
+    const { username, password } = JSON.parse(session ?? "{}");
 
-    return createClient<Database>(supabaseUrl, supabaseKey);
-}
+    return username === adminUsername && password === adminPassword;
+};
 
 const options: QRCodeToDataURLOptions = {
   width: 400,
@@ -47,7 +45,7 @@ const options: QRCodeToDataURLOptions = {
 export const getQRCode = (value: string) => {
   let qrValue: string | undefined = undefined;
 
-  toDataURL(value, options, (err: Error, url: string) => {
+  toDataURL(value, options, (err: unknown, url: string) => {
     if (err) {
       console.error(err);
       return;

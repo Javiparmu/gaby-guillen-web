@@ -1,0 +1,18 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import LoginForm from "../../components/admin/LoginForm";
+---
+
+<script>
+    import { getCookie, isValidSession } from "../../utils/helpers";
+
+    const sessionCookie = getCookie("session");
+
+    if (isValidSession(sessionCookie)) {
+        location.href = "/admin/dashboard";
+    }
+</script>
+
+<AdminLayout title="Gabriel Guillén - Login">
+    <LoginForm client:only />
+</AdminLayout>
