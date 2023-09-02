@@ -16,7 +16,7 @@ const LoginForm: FC = () => {
                 password
             }), 30);
 
-            window.location.href = "/admin/dashboard";
+            window.location.href = "/34c83614/dashboard";
         } else {
             showToast();
             
