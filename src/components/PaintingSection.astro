@@ -12,11 +12,13 @@ interface Props {
 
 const {painting, index} = Astro.props;
 ---
-<script type="module">
+<script>
     import { getCookie, isValidSession } from "../utils/helpers";
     
     document.addEventListener('DOMContentLoaded', function () {
         const session = getCookie('session');
+        
+        console.log(session);
 
         if (isValidSession(session)) {
             const qrButtons = document.querySelectorAll('#qr-button');
