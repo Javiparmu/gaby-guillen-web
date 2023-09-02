@@ -1,7 +1,6 @@
 import { createClient, type PostgrestError, type SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "../types";
 
-
 export class SupabaseService {
     public static supabaseClient: SupabaseClient | undefined;
 
