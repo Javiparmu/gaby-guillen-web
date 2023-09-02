@@ -51,9 +51,9 @@ const {painting, index} = Astro.props;
 
 {index % 2 === 0 ?
     (<section id={getSectionIdFromTitle(painting.title)} class='content-section bg-[#ebecf0] px-[15vw] py-5 md:py-0'>
-        <div class="flex flex-col items-center py-8 gap-y-[3vh] md:grid md:grid-cols-2 place-items-center sm:py-16">
-            <img class="max-h-[30vh] md:max-h-[80vh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
-            <div class="flex flex-col items-center md:items-start gap-y-[3vh] md:gap-y-4">
+        <div class="flex flex-col items-center py-8 gap-y-[3dvh] md:grid md:grid-cols-2 place-items-center sm:py-16">
+            <img class="max-h-[30dvh] md:max-h-[80dvh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
+            <div class="flex flex-col items-center md:items-start gap-y-[3dvh] md:gap-y-4">
                 <h2 class="text-2xl md:text-4xl tracking-tight font-extrabold text-gray-900">{painting.title}</h2>
                 <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">{painting.description}</p>
                 <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
@@ -70,8 +70,8 @@ const {painting, index} = Astro.props;
     </section>)
     : 
     (<section id={getSectionIdFromTitle(painting.title)} class='content-section bg-[#13151A] px-[15vw] py-5 md:py-0'>
-        <div class="flex flex-col-reverse items-center justify-center gap-y-[3vh] py-8 md:grid md:grid-cols-2 place-items-center sm:py-16 sm:px-20">
-            <div class="flex flex-col items-center md:items-start gap-y-[3vh] md:gap-y-4">
+        <div class="flex flex-col-reverse items-center justify-center gap-y-[3dvh] py-8 md:grid md:grid-cols-2 place-items-center sm:py-16 sm:px-20">
+            <div class="flex flex-col items-center md:items-start gap-y-[3dvh] md:gap-y-4">
                 <h2 class="text-2xl md:text-4xl tracking-tight font-extrabold text-white">{painting.title}</h2>
                 <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">{painting.description}</p>
                 <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
@@ -84,7 +84,7 @@ const {painting, index} = Astro.props;
                     <Image width={250} height={250} id="qr-code" src={painting.qr} alt="qr" class="hidden fixed top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] z-50 rounded-md"/>
                 }
             </div>
-            <img class="max-h-[30vh] md:max-h-[80vh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
+            <img class="max-h-[30dvh] md:max-h-[80dvh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
         </div>
     </section>)
 }

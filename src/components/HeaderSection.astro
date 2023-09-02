@@ -4,7 +4,7 @@ import SpreadPaintings from './SpreadPaintings.astro'
 
 <script>
     const scrollButton = document.getElementById('scroll-button');
-    const firstSection = scrollButton?.closest('section')?.nextElementSibling;
+    const firstSection = scrollButton?.parentElement?.nextElementSibling?.nextElementSibling;
     
     scrollButton?.addEventListener('click', () => {
         firstSection?.scrollIntoView({ behavior: 'smooth' });
@@ -14,7 +14,7 @@ import SpreadPaintings from './SpreadPaintings.astro'
 <section id="header-section" class="flex flex-col justify-between">
     <SpreadPaintings />
     <header class="flex flex-col gap-5 md:gap-10 px-5 md:px-0">
-        <h1 class="text-8xl md:text-9xl text-center drop-shadow-[1px_1px_4px_rgba(255,255,255,0.5)] shadow-white mt-[37vh]">Gaby Guillén</h1>
+        <h1 class="text-8xl md:text-9xl text-center drop-shadow-[1px_1px_4px_rgba(255,255,255,0.5)] shadow-white mt-[37dvh]">Gaby Guillén</h1>
         <h2 class="text-4xl md:text-5xl text-center drop-shadow-[1px_1px_4px_rgba(255,255,255,0.5)] shadow-white">Arte pop</h2>
     </header>
     <svg id="scroll-button" class="w-[60px] h-[60px] text-white-800 cursor-pointer animate-bounce mb-1 self-center" aria-hidden="true" fill="none" viewBox="0 0 14 8">

@@ -10,7 +10,7 @@ const UpdateModal = ({painting, onClose}: UpdateModalProps) => {
     return (
         <>
             <div onClick={onClose} id="update-bg" className="fixed top-0 left-0 w-screen h-screen bg-black opacity-10" />
-            <div id="update-modal" aria-hidden="true" className="fixed left-0 right-0 mt-[18vh] mx-auto z-50 w-[500px] p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div id="update-modal" aria-hidden="true" className="fixed left-0 right-0 mt-[18dvh] mx-auto z-50 w-[500px] p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div className="relative w-full max-w-md max-h-full">
                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <button onClick={onClose} id="close-button" type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">

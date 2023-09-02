@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^2.3.2",
+    "@astrojs/react": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^4.0.3",
     "@aws-sdk/client-s3": "^3.400.0",
@@ -18,7 +18,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@vercel/analytics": "^1.0.2",
-    "astro": "^3.0.3",
+    "astro": "^3.0.7",
     "lodash": "^4.17.21",
     "qrcode": "^1.5.3",
     "react": "^18.2.0",
