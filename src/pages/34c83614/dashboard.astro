@@ -33,5 +33,5 @@ const paintingsData = await SupabaseService.select<Painting[]>('paintings');
 </script>
 
 <AdminLayout title="Gaby Guillén - Panel de control">
-    <AdminDashboard paintings={paintingsData ?? []} client:only />
+    <AdminDashboard paintings={paintingsData ?? []} client:only="react" />
 </AdminLayout>
