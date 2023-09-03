@@ -4,7 +4,7 @@ import SpreadPaintings from './SpreadPaintings.astro'
 
 <script>
     const scrollButton = document.getElementById('scroll-button');
-    const firstSection = scrollButton?.parentElement?.nextElementSibling?.nextElementSibling;
+    const firstSection = scrollButton?.parentElement?.nextElementSibling;
     
     scrollButton?.addEventListener('click', () => {
         firstSection?.scrollIntoView({ behavior: 'smooth' });
