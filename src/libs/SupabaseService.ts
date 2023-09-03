@@ -55,10 +55,10 @@ export class SupabaseService {
         }
     }
 
-    public static async select<T>(table: string, fields?: string): Promise<T> {
+    public static async select<T>(table: string, fields?: string, match?: Record<string, unknown>): Promise<T> {
         const supabase = this.getSupabaseClient();
 
-        const { data, error } = await supabase.from(table).select(fields ?? '*').returns<T>();
+        const { data, error } = await supabase.from(table).select(fields ?? '*').match(match ?? {}).returns<T>();
 
         if (error) {
             throw new Error('Error in supabase - ' + error.message)
