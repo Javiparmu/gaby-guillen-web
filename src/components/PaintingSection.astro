@@ -12,27 +12,27 @@ const {painting, index} = Astro.props;
 ---
 
 {index % 2 === 0 ?
-    (<section class='content-section bg-[#ebecf0] px-[15vw] py-5 md:py-0'>
-        <div class="flex flex-col items-center py-8 gap-y-[3dvh] md:grid md:grid-cols-2 place-items-center sm:py-16">
-            <img class="max-h-[30dvh] md:max-h-[80dvh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
-            <div class="flex flex-col items-center md:items-start gap-y-[3dvh] md:gap-y-4">
-                <h2 class="text-2xl md:text-4xl tracking-tight font-extrabold text-gray-900">{painting.title}</h2>
-                <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">{painting.description}</p>
-                <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
-                <p class="font-light text-gray-600 text-sm md:text-lg text-center md:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
+    (<section class='content-section bg-[#ebecf0] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
+        <div class="flex flex-col items-center py-8 gap-y-[3dvh] lg:grid lg:grid-cols-2 place-items-center sm:py-16">
+            <img class="max-h-[30dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
+            <div class="flex flex-col items-center lg:items-start gap-y-[3dvh] lg:gap-y-4">
+                <h2 class="text-2xl lg:text-4xl tracking-tight font-extrabold text-gray-900">{painting.title}</h2>
+                <p class="font-light text-gray-600 text-sm lg:text-lg text-center lg:text-start">{painting.description}</p>
+                <p class="font-light text-gray-600 text-sm lg:text-lg text-center lg:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
+                <p class="font-light text-gray-600 text-sm lg:text-lg text-center lg:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
             </div>
         </div>
     </section>)
     : 
-    (<section class='content-section bg-[#13151A] px-[15vw] py-5 md:py-0'>
-        <div class="flex flex-col-reverse items-center justify-center gap-y-[3dvh] py-8 md:grid md:grid-cols-2 place-items-center sm:py-16 sm:px-20">
-            <div class="flex flex-col items-center md:items-start gap-y-[3dvh] md:gap-y-4">
-                <h2 class="text-2xl md:text-4xl tracking-tight font-extrabold text-white">{painting.title}</h2>
-                <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">{painting.description}</p>
-                <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
-                <p class="font-light text-gray-400 text-sm md:text-lg text-center md:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
+    (<section class='content-section bg-[#13151A] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
+        <div class="flex flex-col-reverse items-center justify-center gap-y-[3dvh] py-8 lg:grid lg:grid-cols-2 place-items-center sm:py-16 sm:px-20">
+            <div class="flex flex-col items-center lg:items-start gap-y-[3dvh] lg:gap-y-4">
+                <h2 class="text-2xl lg:text-4xl tracking-tight font-extrabold text-white">{painting.title}</h2>
+                <p class="font-light text-gray-400 text-sm lg:text-lg text-center lg:text-start">{painting.description}</p>
+                <p class="font-light text-gray-400 text-sm lg:text-lg text-center lg:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
+                <p class="font-light text-gray-400 text-sm lg:text-lg text-center lg:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
             </div>
-            <img class="max-h-[30dvh] md:max-h-[80dvh] md:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
+            <img class="max-h-[30dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
         </div>
     </section>)
 }

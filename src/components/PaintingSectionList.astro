@@ -3,7 +3,7 @@ import PaintingSection from './PaintingSection.astro';
 import { SupabaseService } from '../libs/SupabaseService';
 import type { Painting } from '../types';
 
-const gallery = await SupabaseService.select<Painting[]>('paintings');
+const gallery = await SupabaseService.select<Painting>('paintings');
 ---
 
 {gallery?.map((painting, index) => (
