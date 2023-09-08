@@ -1,38 +1,96 @@
 ---
 import type { Painting } from '../types';
+import PaintingSectionContainer from './PaintingSectionContainer.astro';
 
 export const prerender = false;
 
 interface Props {
     painting: Painting;
-    index: number;
+    isEvenPosition: boolean;
 }
 
-const {painting, index} = Astro.props;
+const {painting, isEvenPosition} = Astro.props;
 ---
 
-{index % 2 === 0 ?
-    (<section class='content-section bg-[#ebecf0] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
-        <div class="flex flex-col items-center py-8 gap-y-[3dvh] lg:grid lg:grid-cols-2 place-items-center sm:py-16">
-            <img class="max-h-[30dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
-            <div class="flex flex-col items-center lg:items-start gap-y-[3dvh] lg:gap-y-4">
-                <h2 class="text-2xl lg:text-4xl tracking-tight font-extrabold text-gray-900">{painting.title}</h2>
-                <p class="font-light text-gray-600 text-sm lg:text-lg text-center lg:text-start">{painting.description}</p>
-                <p class="font-light text-gray-600 text-sm lg:text-lg text-center lg:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
-                <p class="font-light text-gray-600 text-sm lg:text-lg text-center lg:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
-            </div>
-        </div>
-    </section>)
-    : 
-    (<section class='content-section bg-[#13151A] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
-        <div class="flex flex-col-reverse items-center justify-center gap-y-[3dvh] py-8 lg:grid lg:grid-cols-2 place-items-center sm:py-16 sm:px-20">
-            <div class="flex flex-col items-center lg:items-start gap-y-[3dvh] lg:gap-y-4">
-                <h2 class="text-2xl lg:text-4xl tracking-tight font-extrabold text-white">{painting.title}</h2>
-                <p class="font-light text-gray-400 text-sm lg:text-lg text-center lg:text-start">{painting.description}</p>
-                <p class="font-light text-gray-400 text-sm lg:text-lg text-center lg:text-start">Colección: <span class="font-bold">{painting.collection}</span></p>
-                <p class="font-light text-gray-400 text-sm lg:text-lg text-center lg:text-start">Precio: <span class="font-bold">{painting.price}€</span></p>
-            </div>
-            <img class="max-h-[30dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-2xl" src={painting.image_url} alt="dashboard">
-        </div>
-    </section>)
-}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sectionImages = document.querySelectorAll<HTMLImageElement>('.section-image');
+        const modalContainers = document.querySelectorAll<HTMLElement>('.modal-container');
+
+        sectionImages.forEach((sectionImage, index) => {
+            sectionImage.addEventListener('click', () => {
+                const modalContainer = modalContainers[index];
+
+                if (modalContainer) {
+                    modalContainer.classList.add('show');
+                    modalContainer.classList.add('flex');
+                    modalContainer.classList.remove('hidden');
+                }
+            });
+        });
+
+        modalContainers.forEach(modalContainer => {
+            modalContainer.addEventListener('click', (e) => {
+                if(e.target === modalContainer) {
+                    modalContainer.classList.add('hidden');
+                    modalContainer.classList.remove('show');
+                    modalContainer.classList.remove('flex');
+                }
+            });
+        });
+    });
+</script>
+
+<PaintingSectionContainer isEvenPosition={isEvenPosition}>
+    <div class="modal-container fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-50 justify-center items-center hidden" @click="closeModal">
+        <img class="modal-image max-h-[80vh] transform transition-transform duration-300 rounded-md" src={painting.image_url}>
+    </div>
+    <img slot={isEvenPosition ? 'before' : 'after'} class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={painting.image_url} alt="dashboard">
+    <div class="flex flex-col items-center lg:items-start gap-y-[2.5dvh] lg:gap-y-4">
+        <h2  class:list={["text-3xl text-center lg:text-4xl tracking-tight font-extrabold", {'text-gray-900': isEvenPosition, 'text-white': !isEvenPosition}]} class="">{painting.title}</h2>
+        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': isEvenPosition, 'text-gray-400': !isEvenPosition}]}>
+            {painting.description}
+        </p>
+        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': isEvenPosition,'text-gray-400': !isEvenPosition}]}>
+            Colección: <span class="font-bold">{painting.collection}</span>
+        </p>
+        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': isEvenPosition,'text-gray-400': !isEvenPosition}]}>
+            Precio: <span class="font-bold">{painting.price}€
+        </p>
+    </div>
+</PaintingSectionContainer>
+
+<style>
+   .modal-container .modal-image {
+        animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .modal-container.hidden .modal-image.hidden {
+        animation: fadeOut 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            display: none;
+            opacity: 0;
+            scale: 0.6;
+        }
+        to {
+            scale: 1;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            display: flex;
+            scale: 1;
+            opacity: 1;
+        }
+        to {
+            display: none;
+            scale: 0.6;
+            opacity: 0;
+        }
+    }
+</style>

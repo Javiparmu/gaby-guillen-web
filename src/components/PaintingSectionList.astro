@@ -7,5 +7,5 @@ const gallery = await SupabaseService.select<Painting>('paintings');
 ---
 
 {gallery?.map((painting, index) => (
-    <PaintingSection painting={painting} index={index} />
+    <PaintingSection painting={painting} isEvenPosition={index % 2 === 0} />
 ))}
