@@ -3,12 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import HeaderSection from '../components/HeaderSection.astro';
 import UpButton from '../components/UpButton.astro';
 import PaintingSectionList from '../components/PaintingSectionList.astro';
+import { SupabaseService } from '../libs/SupabaseService';
+import type { Painting } from '../types';
+import TopSection from '../components/TopSection.astro';
+
+const gallery = await SupabaseService.select<Painting>('paintings');
 ---
 
 <Layout title="Gaby Guillén - Arte pop">
 	<main class="section-container">
 		<HeaderSection />
-		<PaintingSectionList />
+		<TopSection gallery={gallery} />
+		<PaintingSectionList gallery={gallery} />
 		<UpButton />
 	</main>
 </Layout>

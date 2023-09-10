@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import type { Painting } from '../types';
+
+interface Props {
+    gallery: Painting[];
+}
+
+const { gallery } = Astro.props;
+
+const paintings = [...gallery];
+
+const sortedPaintings = paintings.sort(() => 0.5 - Math.random()).slice(0, 8);
+---
+
+<section class="content-section bg-[#ebecf0]">
+    <div class="mx-auto px-5 py-16 sm:px-6 sm:py-18 lg:px-8">
+        <h2 class="sr-only">Cuadros</h2>
+
+        <div class="max-h-[90dvh] grid gap-x-16 gap-y-5 md:gap-y-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {sortedPaintings?.map((painting) => (
+                <a href={'/' + painting.slug} class="group">
+                    <div class="rounded-md bg-gray-200">
+                        <Image width={120} height={120} src={painting.image_url} alt={painting.title} class="w-[120px] h-[120px] md:w-[200px] md:h-[200px] xl:h-[300px] xl:w-[300px] object-cover object-center group-hover:opacity-75 rounded-md">
+                    </div>
+                    <h3 class="mt-4 text-sm md:text-lg text-gray-700">{painting.title}</h3>
+                    <p class="mt-1 text-lg font-medium text-gray-900">{painting.price}€</p>
+                </a>
+            ))}
+        </div>
+    </div>
+</section>

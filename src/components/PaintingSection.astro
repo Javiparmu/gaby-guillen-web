@@ -41,16 +41,16 @@ const {painting, isEvenPosition} = Astro.props;
 </script>
 
 <PaintingSectionContainer isEvenPosition={isEvenPosition}>
-    <img slot={isEvenPosition ? 'before' : 'after'} class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={painting.image_url} alt={painting.title} decoding='async' loading='lazy'>
+    <img slot={!isEvenPosition ? 'before' : 'after'} class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={painting.image_url} alt={painting.title} decoding='async' loading='lazy'>
     <div class="flex flex-col items-center lg:items-start gap-y-[2.5dvh] lg:gap-y-4">
-        <h2  class:list={["text-3xl text-center lg:text-4xl tracking-tight font-extrabold", {'text-gray-900': isEvenPosition, 'text-white': !isEvenPosition}]} class="">{painting.title}</h2>
-        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': isEvenPosition, 'text-gray-400': !isEvenPosition}]}>
+        <h2  class:list={["text-3xl text-center lg:text-4xl tracking-tight font-extrabold", {'text-gray-900': !isEvenPosition, 'text-white': isEvenPosition}]} class="">{painting.title}</h2>
+        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': !isEvenPosition, 'text-gray-400': isEvenPosition}]}>
             {painting.description}
         </p>
-        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': isEvenPosition,'text-gray-400': !isEvenPosition}]}>
+        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': !isEvenPosition,'text-gray-400': isEvenPosition}]}>
             Colección: <span class="font-bold">{painting.collection}</span>
         </p>
-        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': isEvenPosition,'text-gray-400': !isEvenPosition}]}>
+        <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': !isEvenPosition,'text-gray-400': isEvenPosition}]}>
             Precio: <span class="font-bold">{painting.price}€
         </p>
     </div>

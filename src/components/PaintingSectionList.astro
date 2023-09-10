@@ -1,10 +1,14 @@
 ---
 import PaintingSection from './PaintingSection.astro';
-import { SupabaseService } from '../libs/SupabaseService';
-import type { Painting } from '../types';
 import PaintingModal from './PaintingModal.astro';
+import MenuSection from './TopSection.astro';
+import type { Painting } from '../types';
 
-const gallery = await SupabaseService.select<Painting>('paintings');
+interface Props {
+    gallery: Painting[];
+}
+
+const { gallery } = Astro.props;
 ---
 
 <PaintingModal />
