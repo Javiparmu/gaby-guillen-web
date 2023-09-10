@@ -2,10 +2,12 @@
 import PaintingSection from './PaintingSection.astro';
 import { SupabaseService } from '../libs/SupabaseService';
 import type { Painting } from '../types';
+import PaintingModal from './PaintingModal.astro';
 
 const gallery = await SupabaseService.select<Painting>('paintings');
 ---
 
+<PaintingModal />
 {gallery?.map((painting, index) => (
     <PaintingSection painting={painting} isEvenPosition={index % 2 === 0} />
 ))}

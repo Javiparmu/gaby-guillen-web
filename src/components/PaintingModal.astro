@@ -1,0 +1,45 @@
+---
+interface Props {
+    img?: string;
+}
+
+const { img = "" } = Astro.props;
+---
+
+<div class="modal-container fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-50 justify-center items-center hidden" @click="closeModal">
+    <img class="modal-image max-w-[90vw] max-h-[80dvh] transform transition-transform duration-300 rounded-md" src={img} decoding='async' loading='lazy' alt={'painting zoom'}>
+</div>
+
+<style>
+    .modal-container .modal-image {
+        animation: fadeIn 0.2s ease-in-out;
+    }
+ 
+    .modal-container.hidden .modal-image.hidden {
+        animation: fadeOut 0.2s ease-out;
+    }
+ 
+    @keyframes fadeIn {
+        from {
+            display: none;
+            opacity: 0;
+            scale: 0.8;
+        }
+        to {
+            scale: 1;
+            opacity: 1;
+        }
+    }
+ 
+    @keyframes fadeOut {
+        from {
+            scale: 1;
+            opacity: 1;
+        }
+        to {
+            display: none;
+            scale: 0;
+            opacity: 0;
+        }
+    }
+</style>

@@ -15,37 +15,33 @@ const {painting, isEvenPosition} = Astro.props;
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const sectionImages = document.querySelectorAll<HTMLImageElement>('.section-image');
-        const modalContainers = document.querySelectorAll<HTMLElement>('.modal-container');
+        const modalContainer = document.querySelector<HTMLElement>('.modal-container');
+        const modalImage = document.querySelector<HTMLImageElement>('.modal-image');
 
-        sectionImages.forEach((sectionImage, index) => {
-            sectionImage.addEventListener('click', () => {
-                const modalContainer = modalContainers[index];
+        sectionImages?.forEach((sectionImage) => {
+            sectionImage?.addEventListener('click', () => {
+                if (modalImage != null) {
+                    modalImage.src = sectionImage.src;
+                }
 
-                if (modalContainer) {
-                    modalContainer.classList.add('show');
+                if (modalContainer != null) {
                     modalContainer.classList.add('flex');
                     modalContainer.classList.remove('hidden');
                 }
-            });
+            })
         });
 
-        modalContainers.forEach(modalContainer => {
-            modalContainer.addEventListener('click', (e) => {
-                if(e.target === modalContainer) {
-                    modalContainer.classList.add('hidden');
-                    modalContainer.classList.remove('show');
-                    modalContainer.classList.remove('flex');
-                }
-            });
+        modalContainer?.addEventListener('click', (e) => {
+            if(e.target === modalContainer) {
+                modalContainer.classList.add('hidden');
+                modalContainer.classList.remove('flex');
+            }
         });
     });
 </script>
 
 <PaintingSectionContainer isEvenPosition={isEvenPosition}>
-    <div class="modal-container fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-50 justify-center items-center hidden" @click="closeModal">
-        <img class="modal-image max-h-[80vh] transform transition-transform duration-300 rounded-md" src={painting.image_url}>
-    </div>
-    <img slot={isEvenPosition ? 'before' : 'after'} class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={painting.image_url} alt="dashboard">
+    <img slot={isEvenPosition ? 'before' : 'after'} class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={painting.image_url} alt={painting.title} decoding='async' loading='lazy'>
     <div class="flex flex-col items-center lg:items-start gap-y-[2.5dvh] lg:gap-y-4">
         <h2  class:list={["text-3xl text-center lg:text-4xl tracking-tight font-extrabold", {'text-gray-900': isEvenPosition, 'text-white': !isEvenPosition}]} class="">{painting.title}</h2>
         <p class:list={["font-light text-sm lg:text-lg text-center lg:text-start", {'text-gray-600': isEvenPosition, 'text-gray-400': !isEvenPosition}]}>
@@ -59,38 +55,3 @@ const {painting, isEvenPosition} = Astro.props;
         </p>
     </div>
 </PaintingSectionContainer>
-
-<style>
-   .modal-container .modal-image {
-        animation: fadeIn 0.2s ease-in-out;
-    }
-
-    .modal-container.hidden .modal-image.hidden {
-        animation: fadeOut 0.2s ease-out;
-    }
-
-    @keyframes fadeIn {
-        from {
-            display: none;
-            opacity: 0;
-            scale: 0.6;
-        }
-        to {
-            scale: 1;
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeOut {
-        from {
-            display: flex;
-            scale: 1;
-            opacity: 1;
-        }
-        to {
-            display: none;
-            scale: 0.6;
-            opacity: 0;
-        }
-    }
-</style>
