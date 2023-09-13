@@ -15,7 +15,7 @@ const { slug } = Astro.params;
 
 const data = await SupabaseService.selectBySlug<Painting>(slug ?? '', 'paintings', '*');
 
-const painting = data[0];
+const {slug: paintingSlug, image_url, title, description, collection, price} = data[0];
 ---
 
 <script>
@@ -39,17 +39,19 @@ const painting = data[0];
     });
 </script>
 
-<Layout title={`Gaby Guillén - ${painting.title}`}>
-    <PaintingModal img={painting.image_url} />
-    <section class='content-section bg-[#ebecf0] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
-        <div class="flex flex-col items-center justify-center py-8 gap-y-[4dvh] lg:grid lg:grid-cols-2 place-items-center sm:py-16'">
-            <img class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={painting.image_url} alt="dashboard">
-            <div class="flex flex-col items-center md:items-start gap-y-[3dvh] md:gap-y-4">
-                <h2 class="text-3xl text-center lg:text-4xl tracking-tight font-extrabold text-gray-900">{painting.title}</h2>
-                <p class="font-light text-sm lg:text-lg text-center lg:text-start text-gray-600">{painting.description}</p>
-                <p class="font-light text-sm lg:text-lg text-center lg:text-start text-gray-600">Colección: <span class="font-bold">{painting.collection}</span></p>
-                <p class="font-light text-sm lg:text-lg text-center lg:text-start text-gray-600">Precio: <span class="font-bold">{painting.price}€</span></p>
+<Layout title={`Gaby Guillén - ${title}`}>
+    <main>
+        <PaintingModal img={image_url} />
+        <section class='content-section bg-[#ebecf0] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
+            <div class="flex flex-col items-center justify-center py-8 gap-y-[4dvh] lg:grid lg:grid-cols-2 place-items-center sm:py-16'">
+                <img transition:name={`section-image-${paintingSlug}`} class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={image_url} alt="dashboard">
+                <div class="flex flex-col items-center md:items-start gap-y-[3dvh] md:gap-y-4">
+                    <h2 transition:name={`section-title-${paintingSlug}`} class="text-3xl text-center lg:text-4xl tracking-tight font-extrabold text-gray-900">{title}</h2>
+                    <p class="font-light text-sm lg:text-lg text-center lg:text-start text-gray-600">{description}</p>
+                    <p class="font-light text-sm lg:text-lg text-center lg:text-start text-gray-600">Colección: <span class="font-bold">{collection}</span></p>
+                    <p class="font-light text-sm lg:text-lg text-center lg:text-start text-gray-600">Precio: <span class="font-bold">{price}€</span></p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 </Layout>

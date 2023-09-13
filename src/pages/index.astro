@@ -11,7 +11,7 @@ const gallery = await SupabaseService.select<Painting>('paintings');
 ---
 
 <Layout title="Gaby Guillén - Arte pop">
-	<main class="section-container">
+	<main class="section-container" transition:persist>
 		<HeaderSection />
 		<TopSection gallery={gallery} />
 		<PaintingSectionList gallery={gallery} />

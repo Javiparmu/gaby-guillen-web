@@ -3,11 +3,14 @@ import SpreadPaintings from './SpreadPaintings.astro'
 ---
 
 <script>
-    const scrollButton = document.getElementById('scroll-button');
-    const firstSection = scrollButton?.parentElement?.nextElementSibling;
-    
-    scrollButton?.addEventListener('click', () => {
-        firstSection?.scrollIntoView({ behavior: 'smooth' });
+    document.addEventListener('DOMContentLoaded', () => {
+        const scrollButton = document.getElementById('scroll-button');
+        const topSection = document.getElementById('top-section');
+        if (scrollButton && topSection) {
+            scrollButton?.addEventListener('click', () => {
+                topSection?.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
     });
 </script>
 

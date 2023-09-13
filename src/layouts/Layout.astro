@@ -1,5 +1,5 @@
 --- 
-import { Analytics } from '@vercel/analytics/react';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -22,10 +22,10 @@ const { title } = Astro.props;
 		<meta name="og:type" content="website" />
 		<meta name="og:url" content="https://gabyguillen.vercel.app" />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body>
 		<slot />
-		<Analytics />
 	</body>
 </html>
 <style is:global>
@@ -69,13 +69,16 @@ const { title } = Astro.props;
 		margin: 0;
 	}
 
-	.section-container {
+	html{
 		scroll-snap-type: y mandatory;
 		scrollbar-gutter: 0;
 		overflow-y: scroll;
-		height: 100vh;
 		-ms-overflow-style: none;
 		scrollbar-width: none; 
+	}
+
+	.section-container {
+		height: 100vh;
 	}
 
 	.section-container::-webkit-scrollbar {
