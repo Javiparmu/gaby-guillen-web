@@ -20,7 +20,7 @@ const sortedPaintings = paintings.sort(() => 0.5 - Math.random()).slice(0, 8);
             {sortedPaintings?.map(({slug, image_url, title, price}) => (
                 <a href={'/' + slug} class="group flex flex-col items-center md:items-start">
                     <div class="rounded-md bg-gray-200">
-                        <Image transition:name={`section-image-${slug}`} width={120} height={140} src={image_url} alt={title} class="w-[10dvh] h-[12dvh] md:w-[18dvh] md:h-[22dvh] xl:h-[34dvh] xl:w-[26dvh] object-cover object-center group-hover:opacity-75 rounded-md">
+                        <Image transition:name={`section-image-${slug}`} width={140} height={140} src={image_url} alt={title} class="w-[12.5dvh] h-[12.5dvh] md:w-[18dvh] md:h-[22dvh] xl:h-[34dvh] xl:w-[26dvh] object-cover object-center group-hover:opacity-75 rounded-md">
                     </div>
                     <h3 transition:name={`section-title-${slug}`} class="mt-2 xl:mt-4 text-sm md:text-lg text-gray-700">{title}</h3>
                     <p class="mt-1 text-sm md:text-lg font-medium text-gray-900">{price}€</p>
