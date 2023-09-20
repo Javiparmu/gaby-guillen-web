@@ -16,7 +16,7 @@ const {painting, isEvenPosition} = Astro.props;
 <PaintingSectionContainer isEvenPosition={isEvenPosition}>
     <PaintingContainer slot={!isEvenPosition ? 'before' : 'after'} client:visible>
         <img 
-            class="section-image max-h-[38dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" 
+            class:list={["section-image max-h-[38dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer transition transform hover:scale-105 duration-200", {'hover:-rotate-3': !isEvenPosition, 'hover:rotate-3': isEvenPosition}]}
             src={painting.image_url} 
             alt={painting.title} 
             decoding='async' 
