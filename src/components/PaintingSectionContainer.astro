@@ -6,7 +6,7 @@ interface Props {
 const { isEvenPosition } = Astro.props
 ---
 
-<section class:list={['content-section px-[15vw] lg:px-[5vw] xl:px-[13vw] py-5 lg:py-0 overflow-y-hidden', {'bg-[#ebecf0]': !isEvenPosition, 'bg-[#13151A]': isEvenPosition}]}>
+<section class:list={['content-section px-[15vw] lg:px-[5vw] xl:px-[18vw] py-5 lg:py-0 overflow-y-hidden', {'bg-[#ebecf0]': !isEvenPosition, 'bg-[#13151A]': isEvenPosition}]}>
     <div class:list={[
         'flex items-center py-8 gap-y-[4dvh] lg:grid lg:grid-cols-2 place-items-center sm:py-16', 
         {'flex-col justify-center': !isEvenPosition, 'flex-col-reverse sm:px-20': isEvenPosition}
