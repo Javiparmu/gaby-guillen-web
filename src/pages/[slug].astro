@@ -44,10 +44,8 @@ const {slug: paintingSlug, image_url, title, description, collection, price} = d
         <PaintingModal img={image_url} />
         <section class='content-section bg-[#ebecf0] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
             <div class="flex flex-col items-center justify-center py-8 gap-y-[4dvh] lg:grid lg:grid-cols-2 place-items-center sm:py-16'">
-                <Image
+                <img
                     transition:name={`section-image-${paintingSlug}`}
-                    width={400}
-                    height={400}
                     class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" 
                     src={image_url} 
                     alt={title}
