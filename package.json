@@ -10,10 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/svelte": "^4.0.2",
     "@astrojs/tailwind": "^5.0.0",
     "@supabase/supabase-js": "^2.33.1",
     "astro": "^3.0.12",
-    "sharp": "^0.32.5"
+    "sharp": "^0.32.5",
+    "svelte": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.5.7",

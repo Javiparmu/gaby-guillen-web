@@ -4,6 +4,7 @@ import type { Painting } from "../types";
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import PaintingModal from "../components/PaintingModal.astro";
+import PaintingContainer from "../components/PaintingContainer.svelte";
 
 export async function getStaticPaths() {
     const gallery = await SupabaseService.select<Painting>('paintings');
@@ -19,23 +20,13 @@ const {slug: paintingSlug, image_url, title, description, collection, price} = d
 ---
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sectionImage = document.querySelector<HTMLImageElement>('.section-image');
-        const modalContainer = document.querySelector<HTMLElement>('.modal-container');
+    const modalContainer = document.querySelector('.modal-container');
 
-        sectionImage?.addEventListener('click', () => {
-            if (modalContainer != null) {
-                modalContainer.classList.add('flex');
-                modalContainer.classList.remove('hidden');
-            }
-        })
-
-        modalContainer?.addEventListener('click', (e) => {
-            if(e.target === modalContainer) {
-                modalContainer.classList.add('hidden');
-                modalContainer.classList.remove('flex');
-            }
-        });
+    modalContainer?.addEventListener('click', (e) => {
+        if(e.target === modalContainer) {
+            modalContainer.classList.add('hidden');
+            modalContainer.classList.remove('flex');
+        }
     });
 </script>
 
@@ -44,7 +35,18 @@ const {slug: paintingSlug, image_url, title, description, collection, price} = d
         <PaintingModal img={image_url} />
         <section class='content-section bg-[#ebecf0] px-[15vw] lg:px[10vw] xl:px-[15vw] py-5 lg:py-0'>
             <div class="flex flex-col items-center justify-center py-8 gap-y-[4dvh] lg:grid lg:grid-cols-2 place-items-center sm:py-16'">
-                <img transition:name={`section-image-${paintingSlug}`} class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" src={image_url} alt="dashboard">
+                <PaintingContainer client:idle>
+                    <Image
+                        transition:name={`section-image-${paintingSlug}`}
+                        width={400}
+                        height={400}
+                        class="section-image max-h-[35dvh] lg:max-h-[80dvh] lg:max-w-[400px] rounded-md shadow-lg md:shadow-2xl cursor-pointer" 
+                        src={image_url} 
+                        alt={title}
+                        loading="eager"
+                        fetchpriority="high"
+                    />
+                </PaintingContainer>
                 <div class="flex flex-col items-center md:items-start gap-y-[3dvh] md:gap-y-4">
                     <h2 transition:name={`section-title-${paintingSlug}`} class="text-3xl text-center lg:text-4xl tracking-tight font-extrabold text-gray-900">{title}</h2>
                     <p class="font-light text-sm lg:text-lg text-center lg:text-start text-gray-600">{description}</p>
