@@ -14,19 +14,19 @@ const sortedPaintings8 = paintings.sort(() => 0.5 - Math.random()).slice(0, 8);
 const sortedPaintings6 = paintings.sort(() => 0.5 - Math.random()).slice(0, 6);
 ---
 
-<section id='top-section' class="content-section bg-[#FEF6EC]">
+<section id='top-section' class="content-section bg-[#FEF6EC]" transition:persist>
     <div class="mx-auto px-5 py-16 sm:px-6 sm:py-18 lg:px-8">
         <h2 class="sr-only">Cuadros</h2>
 
         <!-- Versión para pantallas medianas o mayores (8 imágenes) -->
-        <div class="max-h-[90dvh] hidden gap-x-12 gap-y-12 md:gap-y-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:grid" astro-if={!(typeof window !== 'undefined' && window.innerWidth <= 768)}>
+        <div class="max-h-[90dvh] hidden gap-x-12 gap-y-12 md:gap-y-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:grid">
             {sortedPaintings8?.map(({slug, image_url, title}) => (
                 <TopImage title={title} image_url={image_url} slug={slug} />
             ))}
         </div>
 
         <!-- Versión para pantallas pequeñas (6 imágenes) -->
-        <div class="max-h-[90dvh] grid gap-x-[12vw] gap-y-[12vw] md:gap-y-10 grid-cols-2 md:grid-cols-4 md:hidden" astro-if={(typeof window !== 'undefined' && window.innerWidth <= 768)}>
+        <div class="max-h-[90dvh] grid gap-x-[12vw] gap-y-[12vw] md:gap-y-10 grid-cols-2 md:grid-cols-4 md:hidden">
             {sortedPaintings6?.map(({slug, image_url, title}) => (
                 <TopImage title={title} image_url={image_url} slug={slug} />
             ))}
