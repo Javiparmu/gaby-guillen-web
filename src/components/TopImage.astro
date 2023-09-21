@@ -11,8 +11,8 @@ const {title, slug, image_url} = Astro.props
 ---
 
 <a href={'/' + slug} class="group flex flex-col items-center">
-    <div class="rounded-md bg-gray-200">
+    <figure class="rounded-md bg-gray-200">
         <Image transition:name={`section-image-${slug}`} width={140} height={140} src={image_url} alt={title} class="w-[16dvh] h-[22dvh] md:w-[18dvh] md:h-[22dvh] xl:h-[34dvh] xl:w-[26dvh] object-cover object-center group-hover:opacity-75 rounded-md shadow-xl">
-    </div>
+    </figure>
     <h3 transition:name={`section-title-${slug}`} class="hidden mt-2 xl:mt-4 text-md md:text-2xl text-gray-900 md:block">{title}</h3>
 </a>
