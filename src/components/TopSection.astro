@@ -17,23 +17,17 @@ const sortedPaintings6 = paintings.sort(() => 0.5 - Math.random()).slice(0, 6);
 <section id='top-section' class="content-section bg-[#FEF6EC]">
     <div class="mx-auto px-5 py-16 sm:px-6 sm:py-18 lg:px-8">
         <h2 class="sr-only">Cuadros</h2>
-
         <!-- Versión para pantallas medianas o mayores (8 imágenes) -->
-        <div class="hidden md:block">
-            <div class="max-h-[90dvh] grid gap-x-12 gap-y-12 md:gap-y-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-                {sortedPaintings8?.map(({slug, image_url, title}) => (
-                    <TopImage title={title} image_url={image_url} slug={slug} />
-                ))}
-            </div>
+        <div class="hidden md:max-h-[90dvh] md:grid md:gap-x-12 md:gap-y-10 md:grid-cols-3 xl:grid-cols-4">
+            {sortedPaintings8?.map(({slug, image_url, title}) => (
+                <TopImage title={title} image_url={image_url} slug={slug} />
+            ))}
         </div>
-
         <!-- Versión para pantallas pequeñas (6 imágenes) -->
-        <div class="block md:hidden">
-            <div class="max-h-[90dvh] grid gap-x-[12vw] gap-y-[12vw] md:gap-y-10 grid-cols-2 md:grid-cols-4">
-                {sortedPaintings6?.map(({slug, image_url, title}) => (
-                    <TopImage title={title} image_url={image_url} slug={slug} />
-                ))}
-            </div>
+        <div class="max-h-[90dvh] grid gap-x-12 gap-y-12 grid-cols-2 md:hidden">
+            {sortedPaintings6?.map(({slug, image_url, title}) => (
+                <TopImage title={title} image_url={image_url} slug={slug} />
+            ))}
         </div>
     </div>
 </section>
