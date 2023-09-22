@@ -27,11 +27,13 @@ This repository contains the source code for the Gaby Guillén Art Gallery websi
    cd gabyguillenart
 
 3. Install dependencies
+   ```bash
    npm install
    yarn add
    pnpm install
 
-5. Start the development server
+4. Start the development server
+   ```bash
    npm run dev
    yarn dev
    pnpm dev
