@@ -40,7 +40,7 @@ This repository contains the source code for the Gaby Guillén Art Gallery websi
 
 ## Usage
 
-Visit `http://localhost:3000` to view the website.
+Visit `http://localhost:4321` to view the website.
 
 ## Contributing
 
