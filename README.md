@@ -1,54 +1,45 @@
-# Astro Starter Kit: Basics
+# Gaby Guillén Art Gallery
 
-```
-npm create astro@latest -- --template basics
-```
+## Overview
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+This repository contains the source code for the Gaby Guillén Art Gallery website. The website showcases the artwork of Gaby Guillén, a pop art artist. The gallery features various collections of paintings, each with its own unique style and price range.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Technologies Used
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- **Astro**: Static Site Generator
+- **Svelte**: Front-end Framework
+- **TailwindCSS**: CSS framework
 
-## 🚀 Project Structure
+## Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- Display of multiple art collections
+- Detailed information about each painting, including price
+- Built with performance and scalability in mind
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Installation
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+1. Clone the repository
+   ```bash
+   git clone https://github.com/Javiparmu/gaby-guillen-web.git
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+2. Navigate to the project directory
+   ```bash
+   cd gabyguillenart
 
-Any static assets, like images, can be placed in the `public/` directory.
+3. Install dependencies
+   npm install
+   yarn add
+   pnpm install
 
-## 🧞 Commands
+5. Start the development server
+   npm run dev
+   yarn dev
+   pnpm dev
 
-All commands are run from the root of the project, from a terminal:
+## Usage
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Visit `http://localhost:3000` to view the website.
 
-## 👀 Want to learn more?
+## Contributing
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
