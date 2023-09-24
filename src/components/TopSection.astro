@@ -18,13 +18,13 @@ const sortedPaintings6 = paintings.sort(() => 0.5 - Math.random()).slice(0, 6);
     <div class="mx-auto px-5 py-16 sm:px-6 sm:py-18 lg:px-8">
         <h2 class="sr-only">Cuadros</h2>
         <!-- Versión para pantallas medianas o mayores (8 imágenes) -->
-        <div class="hidden md:max-h-[90dvh] md:grid md:gap-x-12 md:gap-y-10 md:grid-cols-3 xl:grid-cols-4">
+        <div class="hidden sm:max-h-[90dvh] sm:grid sm:gap-x-12 sm:gap-y-10 sm:grid-cols-4">
             {sortedPaintings8?.map(({slug, image_url, title}) => (
                 <TopImage title={title} image_url={image_url} slug={slug} />
             ))}
         </div>
         <!-- Versión para pantallas pequeñas (6 imágenes) -->
-        <div class="max-h-[90dvh] grid gap-x-12 gap-y-12 grid-cols-2 md:hidden">
+        <div class="max-h-[90dvh] grid gap-x-12 gap-y-12 grid-cols-2 sm:hidden">
             {sortedPaintings6?.map(({slug, image_url, title}) => (
                 <TopImage title={title} image_url={image_url} slug={slug} />
             ))}
